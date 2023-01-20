@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         font-size: 1.5rem;
         font-family: Arial, Helvetica, sans-serif;
-        background: #000;
+        background: #202020;
     }
 `;
 
@@ -49,6 +49,7 @@ export const Button = styled.button<ButtonProps>`
   font-weight: bold;
   color: white;
   border-radius: 0.5rem;
+  border: none;
   outline: none;
   transition: 0.3s;
 
