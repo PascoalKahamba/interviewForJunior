@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Circle, GlobalStyle, Section } from "./MyStyles";
+import { Button, Circle, GlobalStyle, Section } from "./MyStyles";
 
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
+
+type ButtonProps = React.MouseEventHandler<HTMLButtonElement> | undefined;
 interface CoordinatesProps {
   clientX: number;
   clientY: number;
@@ -15,9 +17,21 @@ function App() {
     setCircles([...circles, { clientX, clientY }]);
     console.log(circles);
   };
+
+  const handleClear: ButtonProps = () => {
+    console.log("clear");
+  };
+
+  const handleUndo: ButtonProps = () => {
+    console.log("undo");
+  };
   return (
     <Section onClick={handleClick}>
       <GlobalStyle />
+      <Button onClick={handleClear}>anular</Button>
+
+      <Button onClick={handleUndo}>desfazer</Button>
+
       {circles.map(({ clientX, clientY }, index) => (
         <Circle key={index} left={clientX - 12} top={clientY - 12}></Circle>
       ))}

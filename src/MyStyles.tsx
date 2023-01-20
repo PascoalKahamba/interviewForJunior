@@ -35,3 +35,25 @@ export const Circle = styled.div<CssProps>`
   border: 0.3rem solid blue;
   border-radius: 100%;
 `;
+
+export const Button = styled.button`
+  background: blue;
+  margin: 0.5rem;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: 0.3s;
+
+  &:hover {
+    background: #01016d;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: text;
+    background-color: #3a3a3a;
+  }
+`;
