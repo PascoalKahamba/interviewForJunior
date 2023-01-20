@@ -1,5 +1,11 @@
+import { GlobalStyle, Section } from "./MyStyles";
+
 function App() {
-  return <div className="App">Hello World</div>;
+  return (
+    <Section>
+      <GlobalStyle />
+    </Section>
+  );
 }
 
 export default App;
