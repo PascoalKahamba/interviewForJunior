@@ -39,6 +39,7 @@ export const Circle = styled.div<CssProps>`
 export const Button = styled.button`
   background: blue;
   margin: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
   padding: 1rem;
   font-weight: bold;

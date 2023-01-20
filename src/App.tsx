@@ -18,11 +18,13 @@ function App() {
     console.log(circles);
   };
 
-  const handleClear: ButtonProps = () => {
-    console.log("clear");
+  const handleClear: ButtonProps = (event) => {
+    event.stopPropagation();
+    setCircles((preview) => preview.slice(0, -1));
   };
 
-  const handleUndo: ButtonProps = () => {
+  const handleUndo: ButtonProps = (event) => {
+    event.stopPropagation();
     console.log("undo");
   };
   return (
