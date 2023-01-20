@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GlobalStyle, Section } from "./MyStyles";
+import { Circle, GlobalStyle, Section } from "./MyStyles";
 
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
 interface CoordinatesProps {
@@ -18,6 +18,9 @@ function App() {
   return (
     <Section onClick={handleClick}>
       <GlobalStyle />
+      {circles.map(({ clientX, clientY }, index) => (
+        <Circle key={index} left={clientX - 12} top={clientY - 12}></Circle>
+      ))}
     </Section>
   );
 }
