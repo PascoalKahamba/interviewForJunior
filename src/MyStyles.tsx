@@ -18,4 +18,5 @@ export const GlobalStyle = createGlobalStyle`
 export const Section = styled.section`
   width: 100vw;
   height: 100vh;
+  cursor: pointer;
 `;
