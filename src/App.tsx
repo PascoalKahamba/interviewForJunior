@@ -33,11 +33,19 @@ function App() {
   return (
     <Section onClick={handleClick}>
       <GlobalStyle />
-      <Button onClick={handleClear} disabled={circles.length === 0}>
+      <Button
+        background="red"
+        onClick={handleClear}
+        disabled={circles.length === 0}
+      >
         ANULAR
       </Button>
 
-      <Button onClick={handleUndo} disabled={removeCircles.length === 0}>
+      <Button
+        background="blue"
+        onClick={handleUndo}
+        disabled={removeCircles.length === 0}
+      >
         REFAZER
       </Button>
 

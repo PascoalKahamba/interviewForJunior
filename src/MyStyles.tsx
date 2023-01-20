@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import { css } from "styled-components";
 
 interface CssProps {
   left: React.CSSProperties["left"];
   top: React.CSSProperties["top"];
+}
+interface ButtonProps {
+  background: React.CSSProperties["backgroundColor"];
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -36,8 +40,8 @@ export const Circle = styled.div<CssProps>`
   border-radius: 100%;
 `;
 
-export const Button = styled.button`
-  background: blue;
+export const Button = styled.button<ButtonProps>`
+  background: ${({ background }) => background};
   margin: 0.5rem;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
@@ -49,7 +53,14 @@ export const Button = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background: #01016d;
+    ${({ background }) =>
+      background === "blue"
+        ? css`
+            background: #020279;
+          `
+        : css`
+            background: #7a0101;
+          `}
   }
 
   &:disabled {
