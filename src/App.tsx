@@ -1,40 +1,35 @@
-import { useState } from "react";
 import { Button, Circle, GlobalStyle, Section } from "./MyStyles";
+import useCircles from "./useCircles";
 
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
 
 type ButtonProps = React.MouseEventHandler<HTMLButtonElement> | undefined;
-interface CoordinatesProps {
-  clientX: number;
-  clientY: number;
-}
 
 function App() {
-  const [circles, setCircles] = useState<CoordinatesProps[]>([]);
-  const [removeCircles, setRemoveCircles] = useState<CoordinatesProps[]>([]);
+  const theRemoveCircles = useCircles();
+  const { circles, addCircles, removeCircles, handleRedor } =
+    useCircles(theRemoveCircles);
 
   const handleClick: SectionProps = (event) => {
     const { clientX, clientY } = event;
-    setCircles([...circles, { clientX, clientY }]);
+    addCircles({ clientX, clientY });
   };
 
-  const handleClear: ButtonProps = (event) => {
+  const theUndoCircles: ButtonProps = (event) => {
     event.stopPropagation();
-    setRemoveCircles([...removeCircles, circles.at(-1)!]);
-    setCircles((preview) => preview.slice(0, -1));
+    removeCircles();
   };
 
-  const handleUndo: ButtonProps = (event) => {
+  const theRederCircles: ButtonProps = (event) => {
     event.stopPropagation();
-    setCircles([...circles, removeCircles.at(-1)!]);
-    setRemoveCircles((preview) => preview.slice(0, -1));
+    handleRedor();
   };
   return (
     <Section onClick={handleClick}>
       <GlobalStyle />
       <Button
         background="red"
-        onClick={handleClear}
+        onClick={theUndoCircles}
         disabled={circles.length === 0}
       >
         ANULAR
@@ -42,8 +37,8 @@ function App() {
 
       <Button
         background="blue"
-        onClick={handleUndo}
-        disabled={removeCircles.length === 0}
+        onClick={theRederCircles}
+        disabled={theRemoveCircles.circles.length === 0}
       >
         REFAZER
       </Button>
