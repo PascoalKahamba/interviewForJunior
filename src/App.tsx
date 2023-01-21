@@ -4,7 +4,7 @@ import { Button, Circle, GlobalStyle, Section } from "./MyStyles";
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
 
 type ButtonProps = React.MouseEventHandler<HTMLButtonElement> | undefined;
-interface CoordinatesProps {
+export interface CoordinatesProps {
   clientX: number;
   clientY: number;
 }
