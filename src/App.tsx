@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Circle, GlobalStyle, Section } from "./MyStyles";
 
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
@@ -16,7 +16,6 @@ function App() {
   const handleClick: SectionProps = (event) => {
     const { clientX, clientY } = event;
     setCircles([...circles, { clientX, clientY }]);
-    console.log(circles);
   };
 
   const handleClear: ButtonProps = (event) => {
