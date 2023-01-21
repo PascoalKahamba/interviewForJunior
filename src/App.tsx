@@ -4,28 +4,23 @@ import useCircles from "./useCircles";
 type SectionProps = React.MouseEventHandler<HTMLElement> | undefined;
 
 type ButtonProps = React.MouseEventHandler<HTMLButtonElement> | undefined;
-export interface CoordinatesProps {
-  clientX: number;
-  clientY: number;
-}
 
 function App() {
-  const remove = useCircles();
-  const { circles, addLastCircle, removeLastCircle, handleRedor } =
-    useCircles(remove);
+  const theRemoveCircles = useCircles();
+  const { circles, addCircles, removeCircles, handleRedor } =
+    useCircles(theRemoveCircles);
 
   const handleClick: SectionProps = (event) => {
     const { clientX, clientY } = event;
-    addLastCircle({ clientX, clientY });
-  };
-  console.log(remove.circles);
-  console.log(useCircles().circles);
-  const handleClear: ButtonProps = (event) => {
-    event.stopPropagation();
-    removeLastCircle();
+    addCircles({ clientX, clientY });
   };
 
-  const handleUndo: ButtonProps = (event) => {
+  const theUndoCircles: ButtonProps = (event) => {
+    event.stopPropagation();
+    removeCircles();
+  };
+
+  const theRederCircles: ButtonProps = (event) => {
     event.stopPropagation();
     handleRedor();
   };
@@ -34,7 +29,7 @@ function App() {
       <GlobalStyle />
       <Button
         background="red"
-        onClick={handleClear}
+        onClick={theUndoCircles}
         disabled={circles.length === 0}
       >
         ANULAR
@@ -42,8 +37,8 @@ function App() {
 
       <Button
         background="blue"
-        onClick={handleUndo}
-        disabled={remove.circles.length === 0}
+        onClick={theRederCircles}
+        disabled={theRemoveCircles.circles.length === 0}
       >
         REFAZER
       </Button>

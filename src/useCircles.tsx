@@ -1,35 +1,34 @@
 import { useState } from "react";
-import { CoordinatesProps } from "./App";
-
+interface CoordinatesProps {
+  clientX: number;
+  clientY: number;
+}
 interface UseCirclesProps {
-  addLastCircle: (coordinates: { clientX: number; clientY: number }) => void;
-  removeLastCircle: (afterAdd?: boolean) => void;
+  addCircles: (coordinates: { clientX: number; clientY: number }) => void;
+  removeCircles: (afterAdd?: boolean) => void;
   circles: CoordinatesProps[];
 }
 
 const useCircles = (props?: UseCirclesProps) => {
   const [circles, setCircles] = useState<CoordinatesProps[]>([]);
 
-  const addLastCircle = (coordinates: { clientX: number; clientY: number }) => {
+  const addCircles = (coordinates: { clientX: number; clientY: number }) => {
     setCircles([...circles, coordinates]);
   };
 
-  const removeLastCircle = (afterAdd = true) => {
-    if (props && afterAdd === true) props.addLastCircle(circles.at(-1)!);
+  const removeCircles = (afterAdd = true) => {
+    if (props && afterAdd) props.addCircles(circles.at(-1)!);
 
     setCircles((preview) => preview.slice(0, -1));
   };
 
   const handleRedor = () => {
-    console.log("Hello");
-    console.log(props);
     if (props) {
-      addLastCircle(props.circles.at(-1)!);
-      props.removeLastCircle(false);
-      console.log("Hello");
+      addCircles(props.circles.at(-1)!);
+      props.removeCircles(false);
     }
   };
-  return { addLastCircle, removeLastCircle, handleRedor, circles };
+  return { addCircles, removeCircles, handleRedor, circles };
 };
 
 export default useCircles;
